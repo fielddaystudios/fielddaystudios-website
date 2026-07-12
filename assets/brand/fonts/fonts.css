@@ -1,0 +1,63 @@
+/* Field Day Studios — font loading
+ *
+ * All five brand fonts (Bungee, Sora, Roboto Serif, Roboto Mono via
+ * Google, Playwrite GB J) load below. Sora is the brand's primary
+ * UI + headline face; Roboto Serif is for editorial body; Roboto Mono
+ * is utility; Bungee is the wordmark; Playwrite GB J is decorative
+ * cursive (the "studios" sign-off).
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap");
+
+/* ---- Bungee ---- */
+@font-face {
+  font-family: "Bungee";
+  src: url("./Bungee-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Sora (variable) ---- */
+@font-face {
+  font-family: "Sora";
+  src: url("./Sora-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Roboto Serif (variable, GRAD opsz wdth wght) ---- */
+@font-face {
+  font-family: "Roboto Serif";
+  src: url("./RobotoSerif-VariableFont_GRAD_opsz_wdth_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto Serif";
+  src: url("./RobotoSerif-Italic-VariableFont_GRAD_opsz_wdth_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---- Playwrite GB J (variable) ----
+ * Brand uses "Playwrite GB J" cursive. The token --font-playwrite already
+ * lists it first; "Playwrite US Modern" / Caveat are fallbacks.
+ */
+@font-face {
+  font-family: "Playwrite GB J";
+  src: url("./PlaywriteGBJ-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playwrite GB J";
+  src: url("./PlaywriteGBJ-Italic-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 800;
+  font-style: italic;
+  font-display: swap;
+}

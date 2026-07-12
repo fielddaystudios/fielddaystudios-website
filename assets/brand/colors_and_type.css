@@ -1,0 +1,288 @@
+/* ============================================================
+ * Field Day Studios — Design Tokens
+ * Open Field direction. Reconstructed from the Matter Level
+ * "Design Review #1" deck (April 2026). Every value is sourced
+ * from the deck — nothing invented.
+ * ============================================================ */
+
+@import url("./fonts/fonts.css");
+
+:root {
+  /* ---- Palette (named after the physical world) ----
+   * Each color appears in the deck; hex values are the source of truth.
+   * Hover/press helpers (-darker / -lighter) are derived for UI use.
+   */
+
+  /* Brand dark — "Ink" */
+  --c-ink: #2D2925;            /* primary text on light */
+  --c-ink-deck: #191919;       /* darker variant used as deck slide bg */
+
+  /* Brand light — "Paper" / "Newspaper" / "Chalk" / "Cream" */
+  --c-paper: #FFFEFB;          /* primary white surface */
+  --c-newspaper: #FAF8F4;      /* warm off-white, between Paper and Chalk */
+  --c-chalk: #F1EDE5;          /* warm neutral surface */
+  --c-cream: #F9F6DA;          /* text on Ink (deck chapter slides) */
+  --c-cream-2: #F9F3DA;        /* slight body variant from deck */
+
+  /* Brand green — "Grass" family (secondary) */
+  --c-grass-dark: #008849;     /* "Dark Grass" — deeper brand green */
+  --c-grass: #00A35A;           /* logo / primary brand color */
+  --c-grass-bright: #3AAA6B;    /* full-bleed wordmark slide variant */
+  --c-grass-darker: #008849;    /* hover (alias of Dark Grass) */
+
+  /* Accents (named, ordered as they appear on the swatch slide) */
+  --c-rope: #C5A882;
+  --c-clover: #C5E871;
+  --c-clover-2: #D5EF72;
+  --c-pencil: #FACD0D;
+  --c-pencil-2: #F5C842;
+  --c-coral: #E95D4A;
+  --c-sky: #4990E8;
+  --c-eraser: #F28EB4;
+
+  /* Pure */
+  --c-white: #FFFFFF;
+  --c-black: #000000;
+
+  /* ---- Semantic color roles ---- */
+  --bg: var(--c-paper);
+  --bg-alt: var(--c-chalk);
+  --bg-dark: var(--c-ink-deck);
+  --bg-brand: var(--c-grass);
+
+  --fg: var(--c-ink);
+  --fg-2: #5C5752;             /* subtle secondary text on light */
+  --fg-on-dark: var(--c-cream);
+  --fg-on-brand: var(--c-paper);
+  --fg-link: var(--c-grass-darker);
+
+  --border: rgba(45, 41, 37, 0.12);
+  --border-strong: var(--c-ink);
+
+  /* ---- Type families ----
+   * Field Day's brand fonts are: Bungee (display), Sora (UI + headlines),
+   * Roboto Serif (editorial body), Roboto Mono (utility), Playwrite GB J
+   * (decorative cursive). All five are bundled locally in /fonts.
+   */
+  --font-bungee: "Bungee", "Impact", system-ui, sans-serif;
+  --font-sora: "Sora", system-ui, sans-serif;
+  --font-serif: "Roboto Serif", Georgia, serif;
+  --font-mono: "Roboto Mono", "JetBrains Mono", ui-monospace, monospace;
+  --font-playwrite: "Playwrite GB J", "Playwrite US Modern", "Caveat", cursive;
+
+  /* ---- Type scale (semantic) ---- */
+  /* Display — Bungee, the wordmark voice */
+  --t-display-xl-family: var(--font-bungee);
+  --t-display-xl-size: 200px;
+  --t-display-xl-line: 1.0;
+  --t-display-xl-tracking: 0;
+
+  --t-display-l-family: var(--font-bungee);
+  --t-display-l-size: 115px;
+  --t-display-l-line: 0.9;
+
+  /* Section header — Sora 136 */
+  --t-slide-title-family: var(--font-sora);
+  --t-slide-title-weight: 400;
+  --t-slide-title-size: 136px;
+  --t-slide-title-line: 1.0;
+
+  /* H1 / Hero — Sora 70+ */
+  --t-h1-family: var(--font-sora);
+  --t-h1-weight: 600;
+  --t-h1-size: 70px;
+  --t-h1-line: 1.05;
+  --t-h1-tracking: -0.01em;
+
+  /* H2 — Sora 45 */
+  --t-h2-family: var(--font-sora);
+  --t-h2-weight: 400;
+  --t-h2-size: 45px;
+  --t-h2-line: 1.155;
+  --t-h2-tracking: 0.01em;
+
+  /* H3 — Sora 36 */
+  --t-h3-family: var(--font-sora);
+  --t-h3-weight: 400;
+  --t-h3-size: 36px;
+  --t-h3-line: 1.2;
+
+  /* Body L — Sora 32 (lede paragraphs) */
+  --t-body-l-family: var(--font-sora);
+  --t-body-l-size: 32px;
+  --t-body-l-line: 1.30;
+  --t-body-l-tracking: -0.02em;
+
+  /* Body — Sora 20 (eyebrows, captions) */
+  --t-body-family: var(--font-sora);
+  --t-body-size: 20px;
+  --t-body-line: 1.4;
+  --t-body-tracking: 0.03em;
+
+  /* Eyebrow / overline — Sora 20 */
+  --t-eyebrow-family: var(--font-sora);
+  --t-eyebrow-size: 20px;
+  --t-eyebrow-line: 1.0;
+  --t-eyebrow-tracking: 0.03em;
+  --t-eyebrow-transform: none;       /* deck uses sentence case */
+
+  /* Code / utility / button labels — Roboto Mono 24 */
+  --t-mono-family: var(--font-mono);
+  --t-mono-size: 24px;
+  --t-mono-line: 1.31;
+  --t-mono-tracking: -0.02em;
+
+  /* Decorative cursive — Playwrite, sparingly */
+  --t-script-family: var(--font-playwrite);
+  --t-script-size: 65px;
+  --t-script-line: 0.85;
+
+  /* Color label (the swatch slide) */
+  --t-swatch-name-family: var(--font-sora);
+  --t-swatch-name-size: 36px;
+  --t-swatch-hex-family: var(--font-sora);
+  --t-swatch-hex-weight: 700;
+  --t-swatch-hex-size: 12px;
+  --t-swatch-hex-tracking: 0.05em;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* ---- Radii ---- */
+  --radius-0: 0;
+  --radius-card: 10px;          /* the only rounded corner in the system */
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  /* ---- Borders ---- */
+  --border-w-thin: 1.5px;
+  --border-w: 3px;
+  --border-w-thick: 15px;       /* alt mark badge ring */
+
+  /* ---- Shadows (used very sparingly) ---- */
+  --shadow-card: 0 5px 20px 0 rgba(0, 0, 0, 0.10), 0 0 3px 0 rgba(0, 0, 0, 0.30);
+
+  /* ---- Motion ---- */
+  --ease-handsy: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-med: 220ms;
+}
+
+/* ============================================================
+ * Semantic element styles — apply by tag for prototypes
+ * ============================================================ */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sora);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-family: var(--t-h1-family);
+  font-weight: var(--t-h1-weight);
+  font-size: var(--t-h1-size);
+  line-height: var(--t-h1-line);
+  letter-spacing: var(--t-h1-tracking);
+  margin: 0 0 0.4em;
+}
+
+h2 {
+  font-family: var(--t-h2-family);
+  font-weight: var(--t-h2-weight);
+  font-size: var(--t-h2-size);
+  line-height: var(--t-h2-line);
+  letter-spacing: var(--t-h2-tracking);
+  margin: 0 0 0.5em;
+}
+
+h3 {
+  font-family: var(--t-h3-family);
+  font-weight: 400;
+  font-size: var(--t-h3-size);
+  line-height: var(--t-h3-line);
+  margin: 0 0 0.5em;
+}
+
+p {
+  font-family: var(--t-body-l-family);
+  font-size: var(--t-body-l-size);
+  line-height: var(--t-body-l-line);
+  letter-spacing: var(--t-body-l-tracking);
+  margin: 0 0 1em;
+}
+
+small, .eyebrow {
+  font-family: var(--t-eyebrow-family);
+  font-size: var(--t-eyebrow-size);
+  line-height: var(--t-eyebrow-line);
+  letter-spacing: var(--t-eyebrow-tracking);
+}
+
+code, kbd, samp, .mono {
+  font-family: var(--t-mono-family);
+  font-size: var(--t-mono-size);
+  letter-spacing: var(--t-mono-tracking);
+}
+
+.script {
+  font-family: var(--t-script-family);
+}
+
+/* The wordmark — use anywhere FIELD DAY needs to appear in the brand voice. */
+.fd-wordmark {
+  font-family: var(--font-bungee);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 0.92;
+}
+.fd-wordmark--studios {
+  font-family: var(--font-playwrite);
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  font-weight: 400;
+}
+
+/* Buttons — the only one in the deck is the Playbook CTA */
+.fd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--c-paper);
+  color: var(--c-ink);
+  font-family: var(--font-bungee);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: transform var(--dur-base) var(--ease-handsy),
+              background var(--dur-base) var(--ease-handsy);
+}
+.fd-btn:hover { background: var(--c-chalk); }
+.fd-btn:active { transform: translateY(1px); }
+
+.fd-btn--ink   { background: var(--c-ink); color: var(--c-cream); }
+.fd-btn--ink:hover { background: #3a3530; }
+.fd-btn--grass { background: var(--c-grass); color: var(--c-paper); }
+.fd-btn--grass:hover { background: var(--c-grass-darker); }
