@@ -1,10 +1,14 @@
 /* Field Day Studios — font loading
  *
- * All five brand fonts (Bungee, Sora, Roboto Serif, Roboto Mono via
- * Google, Playwrite GB J) load below. Sora is the brand's primary
- * UI + headline face; Roboto Serif is for editorial body; Roboto Mono
- * is utility; Bungee is the wordmark; Playwrite GB J is decorative
- * cursive (the "studios" sign-off).
+ * Brand fonts, bundled as WOFF2 for web performance (converted from the
+ * handoff TTFs; originals live in the design handoff folder):
+ * - Bungee: wordmark / display
+ * - Sora (variable): primary UI + headline face
+ * - Roboto Serif (variable): editorial body — GRAD/opsz/wdth axes pinned
+ *   to defaults, weight axis kept (100–900). The italic face is not
+ *   bundled because the site doesn't use serif italics.
+ * - Playwrite GB J (variable, incl. italic): decorative cursive
+ * - Roboto Mono: utility, loaded from Google Fonts
  */
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap");
@@ -12,7 +16,7 @@
 /* ---- Bungee ---- */
 @font-face {
   font-family: "Bungee";
-  src: url("./Bungee-Regular.ttf") format("truetype");
+  src: url("./Bungee-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -21,25 +25,18 @@
 /* ---- Sora (variable) ---- */
 @font-face {
   font-family: "Sora";
-  src: url("./Sora-VariableFont_wght.ttf") format("truetype-variations");
+  src: url("./Sora-VariableFont_wght.woff2") format("woff2-variations");
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
 }
 
-/* ---- Roboto Serif (variable, GRAD opsz wdth wght) ---- */
+/* ---- Roboto Serif (variable, wght only) ---- */
 @font-face {
   font-family: "Roboto Serif";
-  src: url("./RobotoSerif-VariableFont_GRAD_opsz_wdth_wght.ttf") format("truetype-variations");
+  src: url("./RobotoSerif-wght-VariableFont.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto Serif";
-  src: url("./RobotoSerif-Italic-VariableFont_GRAD_opsz_wdth_wght.ttf") format("truetype-variations");
-  font-weight: 100 900;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -49,14 +46,14 @@
  */
 @font-face {
   font-family: "Playwrite GB J";
-  src: url("./PlaywriteGBJ-VariableFont_wght.ttf") format("truetype-variations");
+  src: url("./PlaywriteGBJ-VariableFont_wght.woff2") format("woff2-variations");
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Playwrite GB J";
-  src: url("./PlaywriteGBJ-Italic-VariableFont_wght.ttf") format("truetype-variations");
+  src: url("./PlaywriteGBJ-Italic-VariableFont_wght.woff2") format("woff2-variations");
   font-weight: 100 800;
   font-style: italic;
   font-display: swap;

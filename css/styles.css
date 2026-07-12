@@ -808,9 +808,9 @@ button:focus-visible {
 .about__texture {
   position: absolute;
   inset: 0;
-  background: url("../assets/brand/assets/texture-xerox.png") center / cover;
-  mix-blend-mode: multiply;
-  opacity: 0.5;
+  /* The webp has the original texture pre-composited onto Chalk with
+     multiply blending at 50% opacity baked in (3.3MB PNG -> 11KB). */
+  background: url("../assets/brand/assets/texture-xerox.webp") center / cover;
   pointer-events: none;
 }
 
