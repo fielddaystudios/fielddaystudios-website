@@ -1380,6 +1380,10 @@ button:focus-visible {
     display: none;
   }
 
+  .friends {
+    grid-template-columns: 1fr;
+  }
+
   .hero__tenets {
     font-size: 12px;
   }
