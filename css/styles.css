@@ -190,6 +190,15 @@ button:focus-visible {
   opacity: 1;
 }
 
+/* Honeypot (spam trap) — visually removed, ignored by keyboard and SR */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
 .form-error {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -231,7 +240,7 @@ button:focus-visible {
 
 .wordmark--footer .wordmark__studios {
   font-size: 12px;
-  color: var(--c-sky);
+  color: var(--c-sky-on-dark);
 }
 
 /* ---------- Header ---------- */
@@ -673,53 +682,6 @@ button:focus-visible {
   margin: 0;
 }
 
-/* Password gate */
-.stories__gate {
-  background: var(--c-paper);
-  border-radius: var(--radius-card);
-  padding: 56px 48px;
-  max-width: 420px;
-}
-
-.stories__gate-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--c-grass-darker);
-  display: block;
-  margin-bottom: 14px;
-}
-
-.stories__gate-copy {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 1.5;
-  letter-spacing: normal;
-  color: var(--c-ink);
-  margin: 0 0 26px;
-}
-
-.gate-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.gate-form__submit {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: -0.01em;
-  text-transform: none;
-  color: var(--c-paper);
-  background: var(--c-grass);
-  padding: 14px 18px;
-}
-
-.gate-form__submit:hover {
-  background: var(--c-grass-darker);
-}
-
 /* Story cards */
 .stories__list {
   display: flex;
@@ -727,8 +689,6 @@ button:focus-visible {
   gap: 18px;
 }
 
-.stories__list[hidden],
-.stories__gate[hidden],
 .contact-form[hidden],
 .contact__success[hidden],
 .form-error[hidden],
@@ -749,21 +709,30 @@ button:focus-visible {
   align-items: center;
 }
 
-.story__avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-circle);
-  object-fit: cover;
-  display: block;
-  margin-bottom: 14px;
+.story__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 
-.story__client {
-  font-family: var(--font-bungee);
-  font-size: 21px;
-  line-height: 1.05;
+.story__featured {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+.story__sector {
+  font-family: var(--font-sora);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.2;
   color: var(--c-ink);
-  display: block;
+  margin: 0;
+  max-width: 20ch;
 }
 
 .story__tag {
@@ -773,7 +742,6 @@ button:focus-visible {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 4px 10px;
-  margin-top: 12px;
   border-radius: var(--radius-pill);
 }
 
@@ -793,8 +761,8 @@ button:focus-visible {
 .story__toggle {
   cursor: pointer;
   background: transparent;
-  border: 1.5px solid var(--c-sky);
-  color: var(--c-sky);
+  border: 1.5px solid var(--c-sky-text);
+  color: var(--c-sky-text);
   font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: -0.01em;
@@ -808,7 +776,7 @@ button:focus-visible {
 }
 
 .story__toggle:hover {
-  background: var(--c-sky);
+  background: var(--c-sky-text);
   color: var(--c-paper);
 }
 
@@ -1120,11 +1088,11 @@ button:focus-visible {
 
 /* Friends of Field Day */
 .friends {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 22px;
-  max-width: 440px;
+  max-width: 620px;
 }
 
 .friend {
@@ -1143,25 +1111,29 @@ button:focus-visible {
   background: var(--c-newspaper);
 }
 
-.friend__badge {
+.friend__logo {
   flex: none;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-circle);
-  font-family: var(--font-bungee);
-  font-size: 12px;
-  line-height: 1;
+  width: 96px;
+  height: 52px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.friend__badge--sky    { background: var(--c-sky);    color: var(--c-paper); }
-.friend__badge--grass  { background: var(--c-grass);  color: var(--c-paper); }
-.friend__badge--coral  { background: var(--c-coral);  color: var(--c-paper); }
-.friend__badge--pencil { background: var(--c-pencil); color: var(--c-ink); }
-.friend__badge--eraser { background: var(--c-eraser); color: var(--c-ink); }
-.friend__badge--clover { background: var(--c-clover); color: var(--c-ink); }
+.friend__logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: transform 180ms var(--ease-handsy), opacity 180ms var(--ease-handsy);
+}
+
+.friend:hover .friend__logo img {
+  transform: scale(1.06);
+  opacity: 1;
+}
 
 .friend__name {
   flex: 1;
@@ -1237,7 +1209,7 @@ button:focus-visible {
 
 .contact__sub {
   font-family: var(--font-serif);
-  font-size: 23px;
+  font-size: 24px;
   line-height: 1.45;
   letter-spacing: normal;
   color: var(--c-paper);
@@ -1341,11 +1313,7 @@ button:focus-visible {
 }
 
 .site-footer__links a:hover {
-  color: var(--c-cream);
-  text-decoration: underline;
-  text-decoration-color: var(--c-sky);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  color: var(--c-sky-on-dark);
 }
 
 /* ---------- Responsive layout ---------- */

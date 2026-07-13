@@ -28,7 +28,9 @@ Then open http://localhost:8000. (Opening `index.html` directly via `file://` al
 ## Notes
 
 - **Contact form** posts to Formspree (`https://formspree.io/f/xaqgkqjw`) via `fetch`; the `action` attribute is set so the form still submits if JavaScript is disabled.
-- **Stories section** is unpublished pending client approval. Its markup and JS are archived outside this repo; marker comments in `index.html` (nav + body) and `js/main.js` show where it re-inserts. Its styles remain in `css/styles.css`.
+- **Stories section** (v4): live and ungated, showing one anonymized featured case study — no client names or logos. Two more anonymized stories are drafted in the v4 handoff data model; an HTML comment in the section marks where they slot in. The old client-side password gate was fully removed per the v4 handoff (re-add only as a server-side gate if ever needed).
+- **Contact form spam protection**: hidden `_gotcha` honeypot field; Formspree discards submissions where bots fill it.
+- **Mobile nav** traps keyboard focus while open (Tab cycles, Escape closes and returns focus to the toggle).
 - **Fonts**: Bungee, Sora, Roboto Serif, and Playwrite GB J are bundled locally as WOFF2 (converted from the handoff TTFs; Roboto Serif has its unused GRAD/opsz/wdth axes pinned and no italic face). Roboto Mono loads from Google Fonts. See `assets/brand/fonts/fonts.css`.
 - **Images** are web-optimized: the About texture is pre-composited onto Chalk (multiply at 50% baked in) as an 11 KB WebP; original full-res sources live in the design handoff folder.
 - **Booking link** ("Book a Call") and other external URLs are defined at the top of `js/main.js` and in the footer markup.

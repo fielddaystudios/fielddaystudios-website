@@ -1,6 +1,7 @@
 /* ============================================================
  * Field Day Studios — Site Behavior
- * Mobile nav and the Formspree-backed contact form.
+ * Mobile nav (with focus trap), story card toggles, and the
+ * Formspree-backed contact form.
  * ============================================================ */
 
 (function () {
@@ -19,22 +20,78 @@
     navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   }
 
+  function getNavFocusables() {
+    return Array.prototype.slice.call(
+      nav.querySelectorAll("a[href], button:not([disabled])")
+    );
+  }
+
   if (nav && navToggle) {
     navToggle.addEventListener("click", function () {
-      setNavOpen(!nav.classList.contains("is-open"));
+      var opening = !nav.classList.contains("is-open");
+      setNavOpen(opening);
+      if (opening) {
+        var focusables = getNavFocusables();
+        if (focusables[0]) focusables[0].focus();
+      }
     });
 
     // Close the menu when any nav link is chosen.
     nav.addEventListener("click", function (e) {
       if (e.target.closest("a")) setNavOpen(false);
     });
+
+    // While the mobile menu is open: trap Tab inside it; Escape closes
+    // the menu and returns focus to the toggle button.
+    nav.addEventListener("keydown", function (e) {
+      if (!nav.classList.contains("is-open")) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setNavOpen(false);
+        navToggle.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      var focusables = getNavFocusables();
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
   }
 
-  /* ---------- Stories (unpublished) ----------
-   * The Stories section, its password gate, and the card toggles are
-   * archived outside this repo until client approval. Their JS blocks
-   * get re-inserted here when the section is restored.
-   */
+  /* ---------- Story card toggles (one open at a time) ---------- */
+
+  var storyToggles = Array.prototype.slice.call(
+    document.querySelectorAll("[data-story-toggle]")
+  );
+
+  function setStoryOpen(toggle, open) {
+    var story = toggle.closest(".story");
+    var full = story.querySelector("[data-story-full]");
+    var label = toggle.querySelector("[data-story-label]");
+    var sign = toggle.querySelector("[data-story-sign]");
+
+    toggle.setAttribute("aria-expanded", String(open));
+    full.hidden = !open;
+    label.textContent = open ? "Hide story" : "Read the full story";
+    sign.textContent = open ? "\u2212" : "+";
+  }
+
+  storyToggles.forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+      var isOpen = toggle.getAttribute("aria-expanded") === "true";
+      storyToggles.forEach(function (other) {
+        setStoryOpen(other, other === toggle ? !isOpen : false);
+      });
+    });
+  });
 
   /* ---------- Book a Call ---------- */
 

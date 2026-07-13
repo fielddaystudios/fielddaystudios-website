@@ -55,6 +55,7 @@
   --c-grass-deep: #006939;   /* large green accents on Rope (>=3:1) */
   --c-sky-text: #376DB0;     /* blue small text on Paper/Newspaper/Chalk (>=4.5:1) */
   --c-coral-text: #C74F3F;   /* error text on Paper (>=4.5:1) */
+  --c-sky-on-dark: #6AA6EF;  /* blue accents on Ink backgrounds (>=4.5:1) */
 
   /* ---- Semantic color roles ---- */
   --bg: var(--c-paper);
