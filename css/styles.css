@@ -403,6 +403,10 @@ button:focus-visible {
 }
 
 .hero__tenets {
+  display: inline-flex;
+  flex-wrap: wrap;
+  column-gap: 25px;
+  row-gap: 6px;
   font-family: var(--font-mono);
   font-size: 14px;
   letter-spacing: 0.01em;
@@ -1384,9 +1388,8 @@ button:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .hero__tenets {
-    font-size: 12px;
-  }
+  /* Tenets keep their full 14px size on phones; the three items wrap
+     onto their own lines instead of shrinking (was 12px). */
 }
 
 /* ---------- Reduced motion ---------- */
