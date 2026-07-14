@@ -7,8 +7,6 @@
 (function () {
   "use strict";
 
-  var BOOKING_URL = "https://calendar.app.google/etYNPgW43TUqo76j8";
-
   /* ---------- Mobile nav ---------- */
 
   var nav = document.getElementById("site-nav");
@@ -93,14 +91,8 @@
     });
   });
 
-  /* ---------- Book a Call ---------- */
-
-  var bookButton = document.querySelector("[data-book]");
-  if (bookButton) {
-    bookButton.addEventListener("click", function () {
-      window.open(BOOKING_URL, "_blank", "noopener");
-    });
-  }
+  /* "Book a Call" is a plain anchor (target=_blank) — no JS needed;
+     scripted window.open gets popup-blocked on iOS Safari. */
 
   /* ---------- Contact form ---------- */
 
