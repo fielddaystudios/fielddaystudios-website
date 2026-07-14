@@ -7,6 +7,14 @@
 (function () {
   "use strict";
 
+  // Report a Google Analytics event if the GA tag loaded (never breaks
+  // the site if it didn't, e.g. when an ad blocker removes gtag).
+  function track(eventName, params) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, params || {});
+    }
+  }
+
   /* ---------- Mobile nav ---------- */
 
   var nav = document.getElementById("site-nav");
@@ -88,11 +96,23 @@
       storyToggles.forEach(function (other) {
         setStoryOpen(other, other === toggle ? !isOpen : false);
       });
+      if (!isOpen) {
+        var sector = toggle.closest(".story").querySelector(".story__sector");
+        track("story_open", { story: sector ? sector.textContent : "unknown" });
+      }
     });
   });
 
-  /* "Book a Call" is a plain anchor (target=_blank) — no JS needed;
-     scripted window.open gets popup-blocked on iOS Safari. */
+  /* "Book a Call" is a plain anchor (target=_blank) — no JS needed for
+     navigation; scripted window.open gets popup-blocked on iOS Safari.
+     The click listener below only reports the analytics event. */
+
+  var bookLink = document.querySelector("[data-book]");
+  if (bookLink) {
+    bookLink.addEventListener("click", function () {
+      track("book_call_click");
+    });
+  }
 
   /* ---------- Contact form ---------- */
 
@@ -157,6 +177,7 @@
             contactState.submitted = true;
             renderContact();
             contactForm.reset();
+            track("contact_form_submit");
           } else {
             contactError.hidden = false;
           }
