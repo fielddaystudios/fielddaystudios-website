@@ -1312,9 +1312,7 @@ button:focus-visible {
 
 .site-footer__credit a {
   color: var(--c-cream);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
   transition: color 180ms var(--ease-handsy);
 }
 
