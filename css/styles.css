@@ -1296,11 +1296,30 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.site-footer__copyright {
+.site-footer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.site-footer__copyright,
+.site-footer__credit {
   font-family: var(--font-mono);
   font-size: 13px;
   color: rgba(249, 246, 218, 0.66);
   letter-spacing: -0.01em;
+}
+
+.site-footer__credit a {
+  color: var(--c-cream);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 180ms var(--ease-handsy);
+}
+
+.site-footer__credit a:hover {
+  color: var(--c-sky-on-dark);
 }
 
 .site-footer__links {
